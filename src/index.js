@@ -1,22 +1,36 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App.jsx';
-import { Provider } from 'react-redux';
-import store from './redux/store';
-import { setCurrentUser } from './redux/actions/auth';
-import setAuthToken from './utils/setAuthToken';
+/*!
 
-const loggedUser = JSON.parse(localStorage.getItem('user'));
-if (loggedUser) {
-  setAuthToken(loggedUser.accessToken);
-  //setAuthToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjYwMDE0YjdjYWYzMTE5MGI4YzY1OTEyOSIsImVtYWlsSWQiOiJhZG1pbkBjcXMuaW4iLCJmaXJzdE5hbWUiOiJBZG1pbiIsImxhc3ROYW1lIjoiIn0sInN0YXR1cyI6MjAwLCJtZXNzYWdlIjoidXNlcnMgcmVjb3JkIGZvdW5kIHN1Y2Nlc3NmdWxseSIsImNyZWF0ZWRPbiI6IjIwMjEtMDEtMThUMDk6MDY6NTQuMDAwWiIsImlhdCI6MTYxMDk2MDgxNH0.-l3Ss305zWOaogouFqZpfQDzlf2Lre1H1GWoHxN3QGs")
-  store.dispatch(setCurrentUser(loggedUser))
-}
+=========================================================
+* Purity UI Dashboard - v1.0.1
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/purity-ui-dashboard
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/purity-ui-dashboard/blob/master/LICENSE.md)
+
+* Design by Creative Tim & Coded by Simmmple
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
+import React from "react";
+import ReactDOM from "react-dom";
+import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
+
+import AuthLayout from "./layouts/Auth.js";
+import AdminLayout from "./layouts/Admin.js";
+import RTLLayout from "./layouts/RTL.js";
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
+  <HashRouter>
+    <Switch>
+      <Route path={`/auth`} component={AuthLayout} />
+      <Route path={`/admin`} component={AdminLayout} />
+      <Route path={`/rtl`} component={RTLLayout} />
+      <Redirect from={`/`} to="/admin/dashboard" />
+    </Switch>
+  </HashRouter>,
+  document.getElementById("root")
 );
