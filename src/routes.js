@@ -16,6 +16,7 @@ import {
   RocketIcon,
   SupportIcon,
 } from "./components/Icons/Icons";
+import Home from "./views/Public/Home";
 
 var dashRoutes = [
   {
@@ -56,6 +57,15 @@ var dashRoutes = [
     rtlName: "صفحات",
     state: "pageCollapse",
     views: [
+      {
+        path: "/",
+        name: "Home",
+        rtlName: "Home",
+        icon: <DocumentIcon color="inherit" />,
+        component: Home,
+        secondaryNavbar: true,
+        layout: "/auth",
+      },
       {
         path: "/profile",
         name: "Profile",
